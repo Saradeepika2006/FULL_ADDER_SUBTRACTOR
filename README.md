@@ -37,19 +37,64 @@ Diff = A ⊕ B ⊕ Bin
 Borrow out = A'Bin + A'B + BBin
 
 **Truthtable**
+![Screenshot 2025-04-21 191044](https://github.com/user-attachments/assets/202f354a-4866-426b-a11a-6b7515214c1e)
+
 
 **Procedure**
-
-Write the detailed procedure here
+ Full Adder: Inputs: Three inputs: A, B (the two bits to be added), and Cin (the carry-in bit from a previous addition). Outputs: Two outputs: Sum (the resulting sum) and Cout (the carry-out bit). Logic: Sum = A ^ B ^ Cin (XOR operation). Cout = (A & B) | (A & Cin) | (B & Cin) (carry occurs if at least two inputs are 1). Full Subtractor: Inputs: Three inputs: A, B (the two bits, where A - B is calculated), and Bin (the borrow-in from a previous subtraction). Outputs: Two outputs: Diff (the resulting difference) and Bout (the borrow out bit). Logic: Diff = A ^ B ^ Bin (XOR operation). Bout = (~A & B) | ((~A | B) & Bin) (borrow occurs if A is less than B or needs a borrow). Both circuits follow simple XOR logic for the primary result and AND-OR logic to determine carry or borrow conditions
 
 **Program:**
 
-/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. 
+Developed by:MOPURI SARADEEPIKA
+
+RegisterNumber:212224040201
+
+```
+module Fulladder(sum, cout, a, b, cin);
+    output sum;
+    output cout;
+    input a;
+    input b;
+    input cin;
+
+	 wire w1,w2,w3;
+	 assign w1=a^b;
+	 assign w2=a&b;
+	 assign w3=w1&cin;
+	 assign sum=w1^cin;
+	 assign cout=w2|w3;
+endmodule
+```
+
+```
+module fullsubtractor (df,bo,a,b,bin);
+output df;
+output bo;
+input a;
+input b;
+input bin;
+wire w1,w2,w3;
+assign w1=a^b;
+assign w2=(~a&b);
+assign w3=(~w1&bin);
+assign df=w1^bin;
+assign bo=w2|w3;
+endmodule
+```
+
 
 **RTL Schematic**
+![Screenshot 2025-04-21 191422](https://github.com/user-attachments/assets/02141417-5990-4b0c-bb1c-cb9052427908)
+![Screenshot 2025-04-21 191528](https://github.com/user-attachments/assets/36c8607f-b4b8-495e-b801-4ba3e1a4e3be)
+
+
 
 **Output Timing Waveform**
+![Screenshot 2025-04-21 191619](https://github.com/user-attachments/assets/d0d2dfe4-049f-4a5b-a933-fbd8b558f9af)
+![Screenshot 2025-04-21 191710](https://github.com/user-attachments/assets/e97dff7c-5324-4746-8ebc-a6f454e5ef45)
+
+
 
 **Result:**
 
